@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.JsonSerializable.Base;
 import com.gachon.frimo.domain.BaseTimeEntity;
 import com.gachon.frimo.domain.commentAI.CommentAI;
-import com.gachon.frimo.domain.diary_interest_tag.DiaryInterestTag;
+import com.gachon.frimo.domain.diaryInterestTag.DiaryInterestTag;
 import com.gachon.frimo.domain.user.User;
 
 import java.io.Serializable;

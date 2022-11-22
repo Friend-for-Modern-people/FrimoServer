@@ -1,4 +1,4 @@
-package com.gachon.frimo.domain.diary_interest_tag;
+package com.gachon.frimo.domain.diaryInterestTag;
 
 import java.util.Optional;
 

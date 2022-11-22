@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.gachon.frimo.domain.BaseTimeEntity;
 import com.gachon.frimo.domain.diary.Diary;
-import com.gachon.frimo.domain.diary_interest_tag.DiaryInterestTag;
+import com.gachon.frimo.domain.diaryInterestTag.DiaryInterestTag;
 import com.gachon.frimo.domain.sentimentTag.SentimentTag;
 import com.gachon.frimo.domain.user.User;
 
