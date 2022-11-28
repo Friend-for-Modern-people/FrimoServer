@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.gachon.frimo.domain.user.User;
 import com.gachon.frimo.domain.user.UserRepository;
 import com.gachon.frimo.web.dto.UserDto;
 
@@ -29,6 +30,14 @@ public class UserService {
     }
 
     @Transactional 
-    public 
+    public UserDto.GetUserOnlyInfoResponseDto getUserInfoResponseDto(Long userPk){
+        User user =userRepository.findByUserPk(userPk);
+        return UserDto.GetUserOnlyInfoResponseDto.builder()
+                                            .userId(user.getUserId())
+                                            .userNN(user.getUserNN())
+                                            .userPk(user.getUserPk())
+                                            .build();
+                                            
+    }
     
 }

@@ -52,4 +52,21 @@ public class UserDto {
                         .build();
         }
     }
+
+    @Getter
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    public static class GetUserOnlyInfoResponseDto { //DB에서 가져온 댓글을 DTO로 변환하기 위한 DTO
+        private Long userPk;
+        private String userId;
+        private String userNN;
+        
+        @Builder
+        public GetUserOnlyInfoResponseDto(Long userPk, String userId, String userNN){
+            this.userPk=userPk;
+            this.userId=userId;
+            this.userNN=userNN;
+            
+        }
+    }
+
 }

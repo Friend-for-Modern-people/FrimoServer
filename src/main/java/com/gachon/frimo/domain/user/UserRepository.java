@@ -17,6 +17,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     public boolean existsByUserNN(String userNN);
 
     public void deleteByUserPk(Long userPk);
-    
 
 }

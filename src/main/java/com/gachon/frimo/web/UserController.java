@@ -58,9 +58,11 @@ public class UserController {
      * 
      * @variable userPk
      * 
-     * @return ok, userDto
+     * @return ok, userDto.GetUserOnlyInfoResponseDto
      */
     @GetMapping(path = "/{userPk}")
-    public ResponseEntity<>
-     
+    public ResponseEntity<UserDto.GetUserOnlyInfoResponseDto> getUserInfo(@PathVariable(value = "userPk") Long userPk){
+        return ResponseEntity.ok(userService.getUserInfoResponseDto(userPk));
+    }
+
 }
