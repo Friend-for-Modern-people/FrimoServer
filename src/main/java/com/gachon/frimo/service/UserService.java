@@ -23,11 +23,12 @@ public class UserService {
     }
 
     @Transactional
-    public List<CommentAIDto.GetCommentResponseDto> getCommentInDiary(Long diaryPk) { 
-        Diary diary = diaryRepository.findByDiaryPk(diaryPk);
-        List<CommentAI> comments = commentAIRepository.findAllByDiary(diary);
-
-        return comments.stream().map(CommentAIDto::toGetCommentResponseDto)
-                .collect(Collectors.toList());
+    public Long deleteUser (Long userPk){
+        userRepository.deleteByUserPk(userPk);
+        return userPk;
     }
+
+    @Transactional 
+    public 
+    
 }

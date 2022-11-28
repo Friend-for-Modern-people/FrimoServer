@@ -33,7 +33,7 @@ public class UserController {
     /*
      * 닉네임 중복확인 API
      * 
-     * @param usernickname
+     * @variable usernickname
      * 
      * @return ok
      */
@@ -44,10 +44,23 @@ public class UserController {
     /*
      * 회원탈퇴 API
      * 
-     * @param userPk
+     * @variable userPk
      * 
-     * @return ok
+     * @return ok, "# is deleted"
      */
     @DeleteMapping(path = "/{userPK}")
-    public ResponseEntity<B>
+    public ResponseEntity<String> deleteUser(@PathVariable(value ="userPk") Long userPk){
+        return ResponseEntity.ok(userService.deleteUser(userPk)+" is deleted");
+    }
+
+    /*
+     * 회원조회 API
+     * 
+     * @variable userPk
+     * 
+     * @return ok, userDto
+     */
+    @GetMapping(path = "/{userPk}")
+    public ResponseEntity<>
+     
 }
