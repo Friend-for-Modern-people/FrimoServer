@@ -31,13 +31,17 @@ public class User extends BaseTimeEntity implements Serializable {
 
     @Column(length = 100, name = "user_id")
     private String userId;
+
+    @Column(length =32, name="user_nn")
+    private String userNN;
     
     @OneToMany(fetch = FetchType.LAZY , mappedBy = "author")
     private List<Diary> diaries;
 
     @Builder
-    public User(String userId) {
+    public User(String userId, String userNN) {
         this.userId = userId;
+        this.userNN = userNN;
     }
 
 }

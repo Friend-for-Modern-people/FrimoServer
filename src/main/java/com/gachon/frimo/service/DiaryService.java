@@ -13,6 +13,5 @@ public class DiaryService {
     @Autowired
     private final Diary diary;
 
-    @Transactional
-    public 
+
 }

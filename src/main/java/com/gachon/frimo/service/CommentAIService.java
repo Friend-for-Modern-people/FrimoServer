@@ -47,9 +47,4 @@ public class CommentAIService {
         commentAIRepository.save(newComment.toEntity());
     }
 
-    @Transactional
-    public void deleteComment(CommentAIDto.RegionRequest regionRequest){
-        
-        
-    }
 }

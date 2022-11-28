@@ -42,12 +42,12 @@ public class CommentAIController {
       /*
      * 해당 게시글의 댓글을 등록하는 API
      * 
-     * @param RequestBody {String commentContent, LocalDataTime commentDate, Diary diary}
+     * @param RequestBody CommentAIDto.AddCommentRequestDto
      * 
      * @return  201 CREATED , saved
      */
     @PostMapping()
-    public ResponseEntity<String> addRegion(@RequestBody  CommentAIDto.AddCommentRequestDto addCommentRequestDto) {
+    public ResponseEntity<String> addComment(@RequestBody  CommentAIDto.AddCommentRequestDto addCommentRequestDto) {
         commentAIService.addComment(addCommentRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("saved");
     }
