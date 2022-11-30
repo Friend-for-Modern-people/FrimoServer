@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
 @Entity
 @Component
 @AllArgsConstructor
@@ -48,6 +49,12 @@ public class Diary extends BaseTimeEntity implements Serializable {
     @Column(name = "date_created")
     private LocalDateTime dateCreated;
 
+    @Column(name = "date_created_year")
+    private int dateCreatedYear;
+
+    @Column(name= "date_created_month")
+    private int dateCreatedMonth;
+
     @Column(name = "main_sent", length = 10) // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
     private String mainSent;
 
@@ -59,12 +66,14 @@ public class Diary extends BaseTimeEntity implements Serializable {
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, String imagePath, User author,
-            LocalDateTime dateCreated, String mainSent) {
+            LocalDateTime dateCreated, String mainSent, int dateCreatedYear, int dateCreatedMonth) {
         this.diaryContent = diaryContent;
         this.diaryTitle = diaryTitle;
         this.imagePath = imagePath;
         this.author = author;
         this.dateCreated = dateCreated;
         this.mainSent= mainSent;
+        this.dateCreatedYear = dateCreatedYear;
+        this.dateCreatedMonth = dateCreatedMonth;
     }
 }
