@@ -67,8 +67,7 @@ public class Diary extends BaseTimeEntity implements Serializable {
     private List<CommentAI> comments;
 
     @Builder
-    public Diary(String diaryTitle, String diaryContent, String imagePath, User author,
-            LocalDateTime dateCreated, String mainSent, int dateCreatedYear, int dateCreatedMonth) {
+    public Diary(String diaryTitle, String diaryContent, String imagePath, User author,LocalDateTime dateCreated, String mainSent, int dateCreatedYear, int dateCreatedMonth) {
         this.diaryContent = diaryContent;
         this.diaryTitle = diaryTitle;
         this.imagePath = imagePath;

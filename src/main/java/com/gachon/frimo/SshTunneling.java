@@ -8,8 +8,8 @@ public class SshTunneling {
 
     private static JSch jsch = new JSch();
 
-    private String url = "218.48.213.10";
-    private String username = "root"; 
+    private String url = "localhost";// "218.48.213.10";
+    private String username = "root";
     private String password = "1234";
     private int port = 22; // ssh포트
     private int lport = 26016; // 외부포트
