@@ -25,10 +25,12 @@ import javax.persistence.*;
 import java.util.List;
 
 
+@Getter
 @Entity
 @Component
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "sentiment_tag")
 public class SentimentTag extends BaseTimeEntity implements Serializable{
     
     @Id

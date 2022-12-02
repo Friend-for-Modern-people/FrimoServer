@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Component
 @AllArgsConstructor
@@ -39,11 +40,11 @@ public class DiaryInterestTag extends BaseTimeEntity implements Serializable {
     @Column(name = "tag_content", length = 45) // 해시테그
     private String tagContent;
 
-    @Column(name = "category")
-    private int category;
+    @Column(name = "category", length=16)
+    private String category;
 
     @Builder
-    public DiaryInterestTag(String tagContent, int category, Diary diary, SentimentTag sentimentTag) {
+    public DiaryInterestTag(String tagContent, String category, Diary diary, SentimentTag sentimentTag) {
         this.tagContent = tagContent;
         this.category = category;
         this.diary = diary;

@@ -33,7 +33,7 @@ public class CommentAIController {
      * 
      */
     @GetMapping(path="/{diaryPK}")
-    public ResponseEntity<List<GetCommentResponseDto>> addComment (@PathVariable(value ="diaryPk") Long diaryPk){
+    public ResponseEntity<List<GetCommentResponseDto>> getComment (@PathVariable(value ="diaryPk") Long diaryPk){
       List<CommentAIDto.GetCommentResponseDto> getcomments = commentAIService.getCommentInDiary(diaryPk);
 
       return ResponseEntity.status(HttpStatus.OK).body(getcomments);
