@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.diary.DiaryRepository;
@@ -22,6 +23,10 @@ import com.gachon.frimo.web.dto.DiaryDto;
 import com.gachon.frimo.web.dto.DiaryInterestTagDto;
 import com.gachon.frimo.web.dto.DiaryInterestTagDto.GetTagResponseDto;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
 public class DiaryInterestTagService {
     @Autowired
     private static DiaryInterestTagRepository diaryInterestTagRepository;
@@ -32,7 +37,7 @@ public class DiaryInterestTagService {
 
     @Transactional
     // 해당 일기의 태그에서 감정만 뽑아 계산하기, 가장 많은 감정을 반환 
-    public String getMainSent(Long diaryPk) {
+    public Diary getMainSent(Long diaryPk) {
 
         Diary diary = diaryRepository.findByDiaryPk(diaryPk);
         List<DiaryInterestTag> tags = diaryInterestTagRepository.findAllByDiary(diary);
@@ -62,15 +67,21 @@ public class DiaryInterestTagService {
         int hurts = hurtlist.size(); // 3
         int embarrassed = embarlist.size(); // 4
         int happiness = haplist.size(); // 5
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("anger", anger);
-        map.put("sadness", sadness);
-        map.put("anxiety", anxiety);
-        map.put("hurts", hurts);
-        map.put("embarrassed", embarrassed);
-        map.put("happiness ", happiness );
 
-        return Collections.max(map.keySet());
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+        map.put(0, anger);
+        map.put(1, sadness);
+        map.put(2, anxiety);
+        map.put(3, hurts);
+        map.put(4, embarrassed);
+        map.put(5, happiness );
+        int mainSent =Collections.max(map.keySet());
+
+        if(mainSent != 7){
+            diary.setMainSent(mainSent);
+        }
+
+        return diaryRepository.save(diary);
 
     }
 

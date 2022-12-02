@@ -23,10 +23,10 @@ public class DiaryDto {
         private int dateCreatedYear;
         private int dateCreatedMonth;
         // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
-        private String mainSent;
+        private int mainSent;
 
         @Builder
-        public GetDiaryResponseDto(Long diaryPk, String diaryTitle, String diaryContent, User user, LocalDateTime dateCreated, int dateCreatedYear,int dateCreatedMonth, String mainSent){
+        public GetDiaryResponseDto(Long diaryPk, String diaryTitle, String diaryContent, User user, LocalDateTime dateCreated, int dateCreatedYear,int dateCreatedMonth, int mainSent){
             this.diaryPk=diaryPk;
             this.diaryTitle = diaryTitle;
             this.diaryContent = diaryContent;
@@ -47,7 +47,7 @@ public class DiaryDto {
         LocalDateTime dateCreated = diary.getDateCreated();
         int dateCreatedMonth= diary.getDateCreatedMonth();
         int dateCreatedYear = diary.getDateCreatedYear();
-        String mainSent = diary.getMainSent();
+        int mainSent = diary.getMainSent();
         
         GetDiaryResponseDto getDiaryResponseDto = GetDiaryResponseDto.builder()
                             .diaryPk(diaryPk)

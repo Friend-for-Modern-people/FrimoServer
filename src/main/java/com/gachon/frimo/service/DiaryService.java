@@ -3,11 +3,15 @@ package com.gachon.frimo.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.diary.DiaryRepository;
 import com.gachon.frimo.domain.user.UserRepository;
 import com.gachon.frimo.web.dto.DiaryDto;
+
+import lombok.RequiredArgsConstructor;
+
 import com.gachon.frimo.domain.user.User;
 
 import java.time.LocalDateTime;
@@ -15,6 +19,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@RequiredArgsConstructor
+@Service
 public class DiaryService {
     @Autowired
     private static DiaryRepository diaryRepository;
@@ -61,6 +67,15 @@ public class DiaryService {
     }
 
     //일기추가
+    // TODO : tag를 먼저 추가하고 main_Sent를 구한 다음에 일기를 작성하는 방식 X
+    // 위의 방식대로 하려면 diaryPK가 없어서 tag를 입력받지 못함.
+    // 따라서 결국 patch를 해야한다는 소리.
+    // patch가 불리는 타이밍은?
+
+    //혹은 일기와 테그를 한번에 받을 수 있다면 pk먼저 저장하고 tag저장하고 mainSent를 저장하는 방식으로 사용해볼수 있을듯 (PostMapping한번에)
+
+    // 모델에서 입력을 받을 때 diary 생성, tag저장, diary patch
+
     @Transactional
     public void addDiary (DiaryDto.AddDiaryRequestDto addDiaryRequestDto){
         String diaryTitle = addDiaryRequestDto.getDiaryTitle();
@@ -69,7 +84,7 @@ public class DiaryService {
         LocalDateTime dateCreated = addDiaryRequestDto.getDateCreated();
         int dateCreatedYear = dateCreated.getYear();
         int dateCreatedMonth = dateCreated.getMonthValue();
-        String mainSent="";
+        int mainSent= 7; //initial value
         String imagePath ="";
         // TODO : tag에서 mainSent 계산하는 함수 필요
 
@@ -86,4 +101,12 @@ public class DiaryService {
                         .build();
         diaryRepository.save(newDiary);
     }
+    @Transactional
+    public int getDiariesCnt(Long userPk){
+        User user = userRepository.findByUserPk(userPk);
+        List<Diary> diaries = diaryRepository.findAllByAuthor(user);
+
+        return diaries.size();
+    }
+
 }

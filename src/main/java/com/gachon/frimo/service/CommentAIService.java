@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gachon.frimo.domain.commentAI.CommentAI;
 import com.gachon.frimo.domain.commentAI.CommentAIRepository;
@@ -16,6 +17,10 @@ import com.gachon.frimo.domain.diary.DiaryRepository;
 import com.gachon.frimo.web.dto.CommentAIDto;
 import com.gachon.frimo.web.dto.CommentAIDto.AddCommentRequestDto;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
 public class CommentAIService {
     @Autowired
     private static CommentAIRepository commentAIRepository;

@@ -13,7 +13,7 @@ import com.gachon.frimo.domain.user.User;
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
     public Diary findByDiaryPk(Long diaryPk);
-    public List<Diary> findAllByMainSent(String mainSent);
+    public List<Diary> findAllByMainSent(int mainSent);
 
     public List<Diary> findAllByAuthor(User author);
 

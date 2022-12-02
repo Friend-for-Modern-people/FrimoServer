@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.stereotype.Component;
@@ -57,8 +58,9 @@ public class Diary extends BaseTimeEntity implements Serializable {
     @Column(name= "date_created_month")
     private int dateCreatedMonth;
 
-    @Column(name = "main_sent", length = 10) // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
-    private String mainSent;
+    @Setter
+    @Column(name = "main_sent") // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
+    private int mainSent;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
     private List<DiaryInterestTag> tags;
@@ -67,7 +69,7 @@ public class Diary extends BaseTimeEntity implements Serializable {
     private List<CommentAI> comments;
 
     @Builder
-    public Diary(String diaryTitle, String diaryContent, String imagePath, User author,LocalDateTime dateCreated, String mainSent, int dateCreatedYear, int dateCreatedMonth) {
+    public Diary(String diaryTitle, String diaryContent, String imagePath, User author,LocalDateTime dateCreated, int mainSent, int dateCreatedYear, int dateCreatedMonth) {
         this.diaryContent = diaryContent;
         this.diaryTitle = diaryTitle;
         this.imagePath = imagePath;
