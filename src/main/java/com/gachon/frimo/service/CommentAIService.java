@@ -23,9 +23,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class CommentAIService {
     @Autowired
-    private static CommentAIRepository commentAIRepository;
+    CommentAIRepository commentAIRepository;
     @Autowired
-    private static DiaryRepository diaryRepository;
+    DiaryRepository diaryRepository;
 
     @Transactional //get all **comments** using by 'diaryPk'
     public List<CommentAIDto.GetCommentResponseDto> getCommentInDiary(Long diaryPk) { 

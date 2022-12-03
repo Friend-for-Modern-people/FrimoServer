@@ -2,7 +2,7 @@ package com.gachon.frimo.web;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ import com.gachon.frimo.web.dto.CommentAIDto.GetCommentResponseDto;
 public class CommentAIController {
 
     @Autowired
-    private static CommentAIService commentAIService;  
+    CommentAIService commentAIService;  
     /*
      * 해당 일기의 댓글을 가져오는 API
      * 

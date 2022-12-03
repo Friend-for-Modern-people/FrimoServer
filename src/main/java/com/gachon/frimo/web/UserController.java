@@ -17,7 +17,7 @@ import com.gachon.frimo.web.dto.UserDto;
 @RequestMapping(path = "/app/user")
 public class UserController {
     @Autowired
-    private static UserService userService;  
+    UserService userService;  
     /*
      * 회원가입 API
      * 

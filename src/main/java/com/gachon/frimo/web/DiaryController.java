@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DiaryController {
 
     @Autowired
-    private static DiaryService diaryService;
+    DiaryService diaryService;
     @Autowired
-    private static UserService userService;
+    UserService userService;
     @Autowired
-    private static DiaryInterestTagService diaryInterestTagService;
+    DiaryInterestTagService diaryInterestTagService;
     /*
      * 최신순의 일기를 가져오는 API
      * 

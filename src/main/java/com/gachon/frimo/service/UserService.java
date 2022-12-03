@@ -16,33 +16,33 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
     @Autowired
-    private static UserRepository userRepository;
+    UserRepository userRepository;
 
     @Transactional
-    public void UserRegist(UserDto.RegistRequestDto registRequestDto){
+    public void UserRegist(UserDto.RegistRequestDto registRequestDto) {
         userRepository.save(registRequestDto.toEntity());
     }
 
     @Transactional
-    public boolean checkUserNNDuplicate(String nickname){
+    public boolean checkUserNNDuplicate(String nickname) {
         return userRepository.existsByUserNN(nickname);
     }
 
     @Transactional
-    public Long deleteUser (Long userPk){
+    public Long deleteUser(Long userPk) {
         userRepository.deleteByUserPk(userPk);
         return userPk;
     }
 
-    @Transactional 
-    public UserDto.GetUserOnlyInfoResponseDto getUserInfoResponseDto(Long userPk){
-        User user =userRepository.findByUserPk(userPk);
+    @Transactional
+    public UserDto.GetUserOnlyInfoResponseDto getUserInfoResponseDto(Long userPk) {
+        User user = userRepository.findByUserPk(userPk);
         return UserDto.GetUserOnlyInfoResponseDto.builder()
-                                            .userId(user.getUserId())
-                                            .userNN(user.getUserNN())
-                                            .userPk(user.getUserPk())
-                                            .build();
-                                            
+                .userId(user.getUserId())
+                .userNN(user.getUserNN())
+                .userPk(user.getUserPk())
+                .build();
+
     }
-    
+
 }

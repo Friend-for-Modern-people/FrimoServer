@@ -23,9 +23,9 @@ import java.util.stream.Collectors;
 @Service
 public class DiaryService {
     @Autowired
-    private static DiaryRepository diaryRepository;
+    DiaryRepository diaryRepository;
     @Autowired
-    private static UserRepository userRepository;
+    UserRepository userRepository;
 
 
     @Transactional

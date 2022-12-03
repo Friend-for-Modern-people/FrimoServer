@@ -29,11 +29,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class DiaryInterestTagService {
     @Autowired
-    private static DiaryInterestTagRepository diaryInterestTagRepository;
+    DiaryInterestTagRepository diaryInterestTagRepository;
     @Autowired
-    private static DiaryRepository diaryRepository;
+    DiaryRepository diaryRepository;
     @Autowired
-    private static SentimentTagRepository sentimentTagRepository;
+    SentimentTagRepository sentimentTagRepository;
 
     @Transactional
     // 해당 일기의 태그에서 감정만 뽑아 계산하기, 가장 많은 감정을 반환 

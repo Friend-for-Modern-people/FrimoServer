@@ -20,7 +20,7 @@ import com.gachon.frimo.web.dto.DiaryInterestTagDto;
 @RequestMapping(path = "/app/tag/")
 public class DiaryInterestTagController {
     @Autowired
-    private static DiaryInterestTagService diaryInterestTagService;
+    DiaryInterestTagService diaryInterestTagService;
         /*
      * 모델의 아웃풋으로 나오는 태그를 저장하는 API
      * 
