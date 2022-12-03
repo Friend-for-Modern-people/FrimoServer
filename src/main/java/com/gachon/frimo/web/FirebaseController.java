@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping(path = "/app/diary/")
+@RequestMapping(path = "/app/chatting/")
 public class FirebaseController {
 }
