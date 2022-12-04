@@ -21,7 +21,7 @@ import com.gachon.frimo.web.dto.DiaryInterestTagDto;
 public class DiaryInterestTagController {
     @Autowired
     DiaryInterestTagService diaryInterestTagService;
-        /*
+    /*
      * 모델의 아웃풋으로 나오는 태그를 저장하는 API
      * 
      * @param PathVariable Long userPk , PathVariable int year
@@ -35,25 +35,43 @@ public class DiaryInterestTagController {
      * 
      * @param RequestBody DiaryDto.AddDiaryRequestDto
      * 
-     * @return  201 CREATED , saved
+     * @return 201 CREATED , saved
      */
-    @PostMapping(value="/{userPk}/{diaryPk}")
-    public ResponseEntity<String> addTag(@PathVariable(value ="userPk") Long userPk, @PathVariable(value ="diaryPk") Long diaryPk, @RequestBody  DiaryInterestTagDto.AddTagRequestDto AddTagRequestDto) {
+    @PostMapping(value = "/{userPk}/{diaryPk}")
+    public ResponseEntity<String> addTag(@PathVariable(value = "userPk") Long userPk,
+            @PathVariable(value = "diaryPk") Long diaryPk,
+            @RequestBody DiaryInterestTagDto.AddTagRequestDto AddTagRequestDto) {
         diaryInterestTagService.addTag(AddTagRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("saved");
     }
+
     /*
      * 일기에 속한 모든 테그를 가져오는 API
      * 
      * @param RequestBody DiaryDto.AddDiaryRequestDto
      * 
-     * @return  
+     * @return
      */
-    @GetMapping(path="/{userPk}/{diaryPK}")
-    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> addTags (@PathVariable(value ="userPk") Long userPk, @PathVariable(value ="diaryPk") Long diaryPk){
-    List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTags(diaryPk);
+    @GetMapping(path = "/{userPk}/{diaryPK}")
+    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> getTags(
+            @PathVariable(value = "userPk") Long userPk, @PathVariable(value = "diaryPk") Long diaryPk) {
+        List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTags(diaryPk);
 
-    return ResponseEntity.status(HttpStatus.OK).body(gettags);
+        return ResponseEntity.status(HttpStatus.OK).body(gettags);
     }
 
+    /*
+     * 일기에 속한 모든 테그를 가져오는 API
+     * 
+     * @param RequestBody DiaryDto.AddDiaryRequestDto
+     * 
+     * @return
+     */
+    @GetMapping(path = "/{userPk}/{diaryPK}/only4")
+    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> get4Tags(
+            @PathVariable(value = "userPk") Long userPk, @PathVariable(value = "diaryPk") Long diaryPk) {
+        List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTags(diaryPk);
+
+        return ResponseEntity.status(HttpStatus.OK).body(gettags);
+    }
 }

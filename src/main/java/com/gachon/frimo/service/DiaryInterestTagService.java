@@ -99,13 +99,15 @@ public class DiaryInterestTagService {
         diaryInterestTagRepository.save(newTag);
     }
 
-    // 일기에 속한 모든 테그를 가져오기
+    // 일기에 테그 중 4개만 가져오기
     @Transactional
     public List<DiaryInterestTagDto.GetTagResponseDto> getTags (Long diaryPk){
         Diary diary = diaryRepository.findByDiaryPk(diaryPk);
         List<DiaryInterestTag> tags = diaryInterestTagRepository.findAllByDiary(diary);
 
-        return  tags.stream().map(DiaryInterestTagDto::toGetTagResponseDto)
+        return  tags.stream()
+        .limit(4)
+        .map(DiaryInterestTagDto::toGetTagResponseDto)
                 .collect(Collectors.toList());
 
     }

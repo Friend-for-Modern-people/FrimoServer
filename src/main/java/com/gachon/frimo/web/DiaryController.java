@@ -112,5 +112,5 @@ public class DiaryController {
         
         return ResponseEntity.status(HttpStatus.OK).body(diaryService.getDiariesCnt(userPk));
     }
-
+    
 }
