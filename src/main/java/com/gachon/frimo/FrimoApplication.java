@@ -6,10 +6,11 @@ import javax.annotation.PreDestroy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.github.alperkurtul.firebaserealtimedatabase.annotation.EnableFirebaseRealtimeDatabase;
 
-@EnableFirebaseRealtimeDatabase
+@EnableScheduling
 @SpringBootApplication
 public class FrimoApplication {
 
