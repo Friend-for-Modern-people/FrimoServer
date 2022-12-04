@@ -10,7 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
@@ -18,6 +21,7 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,38 +33,28 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
+@EnableScheduling
 @Controller
 @RequestMapping(path = "/app/chatting/")
 public class ChattingController {
 
-    // @Scheduled(cron="0 0 3 * * *")
-    // @Scheduled(fixedDelay = 100000)
-    @GetMapping(path = "/{day}")
-    public ResponseEntity<String> getChat(@PathVariable(value = "day") String day) throws IOException {
-        JSONParser parser = new JSONParser();
-
-        // String command = "curl
-        // https://frimo-93773-default-rtdb.firebaseio.com/namseunghyeon/chat.json?orderBy=\"message\"&equalTo=\"test\"&print=pretty";
-        // // ProcessBuilder processBuilder = new ProcessBuilder(command.split(" "));
-        // Process process = Runtime.getRuntime().exec(command);
-
-        // InputStream result = process.getInputStream();
-        // String text = new BufferedReader(new InputStreamReader(result,
-        // StandardCharsets.UTF_8))
-        // .lines()
-        // .collect(Collectors.joining("\n"));
-
-        // process.destroy();
-
+    @Scheduled(cron = "5 * * * * *") // 0 0 3 * * *
+    @GetMapping(path = "")
+    public ResponseEntity<String> getChat() throws IOException {
         BufferedReader in = null;
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
         JSONObject jsonObject = null;
 
+        Date dDate = new Date();
+        dDate = new Date(dDate.getTime() + (1000 * 60 * 60 * 24 * -1));
+        SimpleDateFormat dSdf = new SimpleDateFormat("yyyy/MM/dd HH", Locale.KOREA);
+        String yesterday = dSdf.format(dDate);
+
         try {
             URL obj = new URL(
                     "https://frimo-93773-default-rtdb.firebaseio.com/namseunghyeon/chat.json?orderBy=\"time/date\"&equalTo="
-                            + day + "&print=pretty"); // 호출할 url
+                            + 23 + "&print=pretty"); // 호출할 url
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
             con.setRequestMethod("GET");
