@@ -3,10 +3,6 @@ package com.gachon.frimo.web.dto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-
-=======
->>>>>>> a36888a1cb73b113de3ca31f43c3347be931052b
 
 import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.user.User;
