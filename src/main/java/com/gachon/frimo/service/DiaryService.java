@@ -9,6 +9,7 @@ import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.diary.DiaryRepository;
 import com.gachon.frimo.domain.user.UserRepository;
 import com.gachon.frimo.web.dto.DiaryDto;
+import com.gachon.frimo.web.dto.DiaryDto.GetDiaryResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,9 +24,9 @@ import java.util.stream.Collectors;
 @Service
 public class DiaryService {
     @Autowired
-    private static DiaryRepository diaryRepository;
+    DiaryRepository diaryRepository;
     @Autowired
-    private static UserRepository userRepository;
+    UserRepository userRepository;
 
 
     @Transactional
@@ -107,6 +108,17 @@ public class DiaryService {
         List<Diary> diaries = diaryRepository.findAllByAuthor(user);
 
         return diaries.size();
+    }
+
+    @Transactional
+    public List<GetDiaryResponseDto> getDiariesBySent(Long userPk, int sent) {
+        User user = userRepository.findByUserPk(userPk);
+        List<Diary> diaries = diaryRepository.findAllByAuthor(user);
+
+        return diaries.stream()
+        .filter(diary -> (diary.getMainSent() == sent))
+        .map(DiaryDto::toGetDiaryResponseDto)
+                .collect(Collectors.toList());
     }
 
 }

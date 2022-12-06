@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DiaryController {
 
     @Autowired
-    private static DiaryService diaryService;
+    DiaryService diaryService;
     @Autowired
-    private static UserService userService;
+    UserService userService;
     @Autowired
-    private static DiaryInterestTagService diaryInterestTagService;
+    DiaryInterestTagService diaryInterestTagService;
     /*
      * 최신순의 일기를 가져오는 API
      * 
@@ -50,7 +50,7 @@ public class DiaryController {
      * 
      * @param PathVariable Long userPk , PathVariable int month
      * 
-     * @return List<DiaryDto.>
+     * @return List<DiaryDto.GetDiaryResponseDto>
      * 
      */
     @GetMapping(value="/{userPk}/{month}")
@@ -64,17 +64,31 @@ public class DiaryController {
      * 
      * @param PathVariable Long userPk , PathVariable int year
      * 
-     * @return List<DiaryDto.>
+     * @return List<DiaryDto.GetDiaryResponseDto>
      * 
      */
     @GetMapping(value="/{userPk}/{year}")
     public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
-    getDiariesYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year){
+    getDiariesbyYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year){
         List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByMonth(userPk, year);
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
+     /*
+     * 감정별 API
+     * 
+     * @param PathVariable Long userPk , PathVariable int sent
+     * 
+     * @return List<DiaryDto.GetDiaryResponseDto>
+     * 
+     */
+    @GetMapping(value="/{userPk}/{sent}")
+    public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
+    getDiariesbySent(@PathVariable(value="userPk") Long userPk, @PathVariable(value="sent") int sent){
+        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesBySent(userPk, sent);
+        return ResponseEntity.status(HttpStatus.OK).body(diaries);
+    }
     /*
-     * 일기를 등록하는 API
+     * 일기를 등록하는 API (모델)
      * 
      * @param RequestBody DiaryDto.AddDiaryRequestDto
      * 
@@ -86,7 +100,7 @@ public class DiaryController {
         return ResponseEntity.status(HttpStatus.CREATED).body("saved");
     }
     /*
-     * 일기의 mainSent를 수정하는 API
+     * 일기의 mainSent를 수정하는 API (모델)
      * 
      * @param int mainSent, Long diaryPk
      * 
@@ -101,9 +115,9 @@ public class DiaryController {
     /*
      * 작성된 일기의 개수를 전부 가져오는 API
      * 
-     * @param PathVariable Long userPk , PathVariable int year
+     * @param PathVariable Long userPk 
      * 
-     * @return List<DiaryDto.>
+     * @return List<Integer>
      * 
      */
     @GetMapping(value="/{userPk}/cnt")
@@ -112,5 +126,5 @@ public class DiaryController {
         
         return ResponseEntity.status(HttpStatus.OK).body(diaryService.getDiariesCnt(userPk));
     }
-
+    
 }

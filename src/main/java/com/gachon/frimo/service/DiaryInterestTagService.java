@@ -29,11 +29,11 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class DiaryInterestTagService {
     @Autowired
-    private static DiaryInterestTagRepository diaryInterestTagRepository;
+    DiaryInterestTagRepository diaryInterestTagRepository;
     @Autowired
-    private static DiaryRepository diaryRepository;
+    DiaryRepository diaryRepository;
     @Autowired
-    private static SentimentTagRepository sentimentTagRepository;
+    SentimentTagRepository sentimentTagRepository;
 
     @Transactional
     // 해당 일기의 태그에서 감정만 뽑아 계산하기, 가장 많은 감정을 반환 
@@ -99,13 +99,15 @@ public class DiaryInterestTagService {
         diaryInterestTagRepository.save(newTag);
     }
 
-    // 일기에 속한 모든 테그를 가져오기
+    // 일기에 테그 중 4개만 가져오기
     @Transactional
     public List<DiaryInterestTagDto.GetTagResponseDto> getTags (Long diaryPk){
         Diary diary = diaryRepository.findByDiaryPk(diaryPk);
         List<DiaryInterestTag> tags = diaryInterestTagRepository.findAllByDiary(diary);
 
-        return  tags.stream().map(DiaryInterestTagDto::toGetTagResponseDto)
+        return  tags.stream()
+        .limit(4)
+        .map(DiaryInterestTagDto::toGetTagResponseDto)
                 .collect(Collectors.toList());
 
     }
