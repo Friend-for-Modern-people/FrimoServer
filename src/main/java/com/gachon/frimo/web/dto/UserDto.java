@@ -2,7 +2,7 @@ package com.gachon.frimo.web.dto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.user.User;

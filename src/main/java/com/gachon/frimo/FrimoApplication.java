@@ -14,7 +14,7 @@ public class FrimoApplication {
 		SpringApplication app = new SpringApplication(FrimoApplication.class);
         
         app.setDefaultProperties(Collections
-            .singletonMap("server.port", "8083"));
+            .singletonMap("server.port", "80"));
         app.run(args);
         
         

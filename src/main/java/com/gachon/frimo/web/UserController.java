@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gachon.frimo.service.UserService;
 import com.gachon.frimo.web.dto.UserDto;
+
 @Controller
 @RequestMapping(path = "/app/user")
 public class UserController {
@@ -66,3 +67,4 @@ public class UserController {
     }
 
 }
+// 
