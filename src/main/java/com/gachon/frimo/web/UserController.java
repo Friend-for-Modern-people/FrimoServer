@@ -52,10 +52,10 @@ public class UserController {
      * 
      * @return ok, "# is deleted"
      */
-    @DeleteMapping(path = "/{userPK}")
+    @DeleteMapping(path = "/{userPk}")
     public ResponseEntity<String> deleteUser(@PathVariable(value = "userPk") Long userPk) {
         userService.deleteUser(userPk);
-        return ResponseEntity.ok( "deleted");
+        return ResponseEntity.ok("deleted");
     }
 
     /*
