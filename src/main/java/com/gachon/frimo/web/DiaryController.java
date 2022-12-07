@@ -67,10 +67,10 @@ public class DiaryController {
      * @return List<DiaryDto.GetDiaryResponseDto>
      * 
      */
-    @GetMapping(value="/{userPk}/{year}")
+    @GetMapping(value="/{userPk}/{year}/{month}")
     public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
-    getDiariesbyYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year){
-        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByMonth(userPk, year);
+    getDiariesbyYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year, @PathVariable(value="month") int month){
+        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByYear(userPk, year, month);
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
     /*
