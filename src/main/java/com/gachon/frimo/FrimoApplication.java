@@ -8,8 +8,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.github.alperkurtul.firebaserealtimedatabase.annotation.EnableFirebaseRealtimeDatabase;
-
 @EnableScheduling
 @SpringBootApplication
 public class FrimoApplication {
@@ -18,7 +16,9 @@ public class FrimoApplication {
         SpringApplication app = new SpringApplication(FrimoApplication.class);
 
         app.setDefaultProperties(Collections
-                .singletonMap("server.port", "80"));
+
+            .singletonMap("server.port", "80"));
+
         app.run(args);
 
     }

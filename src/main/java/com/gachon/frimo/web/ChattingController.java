@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +27,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gachon.frimo.service.ChattingService;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
+
 
 @EnableScheduling
 @Controller
@@ -44,7 +40,7 @@ public class ChattingController {
         BufferedReader in = null;
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
-        JSONObject jsonObject = null;
+        
 
         Date dDate = new Date();
         dDate = new Date(dDate.getTime() + (1000 * 60 * 60 * 24 * -1));
