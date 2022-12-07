@@ -57,8 +57,8 @@ public class Diary extends BaseTimeEntity implements Serializable {
     @Column(name = "main_sent") // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
     private int mainSent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userPk")
     private User author; // userPk
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
