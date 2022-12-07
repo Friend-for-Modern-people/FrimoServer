@@ -73,7 +73,7 @@ public class DiaryController {
         List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByMonth(userPk, year);
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
-     /*
+    /*
      * 감정별 API
      * 
      * @param PathVariable Long userPk , PathVariable int sent
