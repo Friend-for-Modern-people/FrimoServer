@@ -29,9 +29,8 @@ public class UserService {
     }
 
     @Transactional
-    public Long deleteUser(Long userPk) {
+    public void deleteUser(Long userPk) {
         userRepository.deleteByUserPk(userPk);
-        return userPk;
     }
 
     @Transactional
