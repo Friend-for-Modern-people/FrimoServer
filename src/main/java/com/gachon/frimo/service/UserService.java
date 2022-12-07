@@ -44,5 +44,9 @@ public class UserService {
                 .build();
 
     }
+    @Transactional
+    public Long getUserPk(String userNN) {
+        return userRepository.findByUserNN(userNN).getUserPk();
+    }
 
 }

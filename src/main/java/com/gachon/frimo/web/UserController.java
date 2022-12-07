@@ -18,19 +18,21 @@ import com.gachon.frimo.web.dto.UserDto;
 @RequestMapping(path = "/app/user")
 public class UserController {
     @Autowired
-    UserService userService;  
+    UserService userService;
+
     /*
      * 회원가입 API
      * 
      * @RequestBody UserDto.registRequestDto
      * 
-     * @return  201 CREATED , saved
+     * @return 201 CREATED , saved
      */
     @PostMapping(path = "")
-    public ResponseEntity<String> RegistUser (@RequestBody UserDto.RegistRequestDto regist){
+    public ResponseEntity<String> RegistUser(@RequestBody UserDto.RegistRequestDto regist) {
         userService.UserRegist(regist);
-        return ResponseEntity.status(HttpStatus.CREATED). body("created");
+        return ResponseEntity.status(HttpStatus.CREATED).body("created");
     }
+
     /*
      * 닉네임 중복확인 API
      * 
@@ -39,9 +41,10 @@ public class UserController {
      * @return ok
      */
     @GetMapping(path = "/{userNN}")
-    public ResponseEntity<Boolean> checkUserNNDuplicate(@PathVariable String nickname){
+    public ResponseEntity<Boolean> checkUserNNDuplicate(@PathVariable String nickname) {
         return ResponseEntity.ok(userService.checkUserNNDuplicate(nickname));
     }
+
     /*
      * 회원탈퇴 API
      * 
@@ -50,8 +53,8 @@ public class UserController {
      * @return ok, "# is deleted"
      */
     @DeleteMapping(path = "/{userPK}")
-    public ResponseEntity<String> deleteUser(@PathVariable(value ="userPk") Long userPk){
-        return ResponseEntity.ok(userService.deleteUser(userPk)+" is deleted");
+    public ResponseEntity<String> deleteUser(@PathVariable(value = "userPk") Long userPk) {
+        return ResponseEntity.ok(userService.deleteUser(userPk) + " is deleted");
     }
 
     /*
@@ -62,9 +65,21 @@ public class UserController {
      * @return ok, userDto.GetUserOnlyInfoResponseDto
      */
     @GetMapping(path = "/{userPk}")
-    public ResponseEntity<UserDto.GetUserOnlyInfoResponseDto> getUserInfo(@PathVariable(value = "userPk") Long userPk){
+    public ResponseEntity<UserDto.GetUserOnlyInfoResponseDto> getUserInfo(@PathVariable(value = "userPk") Long userPk) {
         return ResponseEntity.ok(userService.getUserInfoResponseDto(userPk));
     }
 
+    /*
+     * 닉네임 -> pk찾기 API
+     * 
+     * @variable userNN
+     * 
+     * @return ok, userDto.
+     */
+    @GetMapping(path = "/{userNN}")
+    public ResponseEntity<Long> getUserPk(@PathVariable(value = "userNN") String userNN) {
+        return ResponseEntity.ok(userService.getUserPk(userNN));
+    }
+
 }
-// 
+//
