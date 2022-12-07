@@ -81,7 +81,7 @@ public class DiaryController {
      * @return List<DiaryDto.GetDiaryResponseDto>
      * 
      */
-    @GetMapping(value="/{userPk}/{sent}")
+    @GetMapping(value="/{userPk}/mainSent/{sent}")
     public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
     getDiariesbySent(@PathVariable(value="userPk") Long userPk, @PathVariable(value="sent") int sent){
         List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesBySent(userPk, sent);

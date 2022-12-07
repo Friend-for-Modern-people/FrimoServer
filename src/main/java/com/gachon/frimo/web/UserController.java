@@ -40,7 +40,7 @@ public class UserController {
      * 
      * @return ok
      */
-    @GetMapping(path = "/{userNN}")
+    @GetMapping(path = "/NNcheck/{userNN}")
     public ResponseEntity<Boolean> checkUserNNDuplicate(@PathVariable String nickname) {
         return ResponseEntity.ok(userService.checkUserNNDuplicate(nickname));
     }
