@@ -76,7 +76,7 @@ public class UserController {
      * 
      * @return ok, userDto.
      */
-    @GetMapping(path = "/{userNN}")
+    @GetMapping(path = "/userinfo/{userNN}")
     public ResponseEntity<Long> getUserPk(@PathVariable(value = "userNN") String userNN) {
         return ResponseEntity.ok(userService.getUserPk(userNN));
     }
