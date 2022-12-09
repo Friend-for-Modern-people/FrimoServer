@@ -52,7 +52,7 @@ public class DiaryInterestTagController {
      * 
      * @return List<DiaryInterestTagDto.GetTagResponseDto>
      */
-    @GetMapping(path = "/{userPk}/{diaryPK}")
+    @GetMapping(path = "/{userPk}/{diaryPk}")
     public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> getTags(
             @PathVariable(value = "userPk") Long userPk, @PathVariable(value = "diaryPk") Long diaryPk) {
         List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTags(diaryPk);
