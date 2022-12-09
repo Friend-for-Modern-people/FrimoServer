@@ -59,7 +59,11 @@ public class Diary extends BaseTimeEntity implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
+<<<<<<< HEAD
     @JoinColumn(name = "user_pk")
+=======
+    @JoinColumn(name = "author")
+>>>>>>> 44406dc2e0db9ba7228312570ff8da9432fac886
     private User author; // userPk
 
     // @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
