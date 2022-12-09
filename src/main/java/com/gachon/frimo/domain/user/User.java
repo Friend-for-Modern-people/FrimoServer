@@ -35,8 +35,8 @@ public class User extends BaseTimeEntity implements Serializable {
     @Column(length =32, name="user_nn")
     private String userNN;
     
-    @OneToMany(fetch = FetchType.LAZY , mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Diary> diaries;
+    // @OneToMany(fetch = FetchType.LAZY , mappedBy = "author", cascade = CascadeType.ALL)
+    // private List<Diary> diaries;
 
     @Builder
     public User(String userId, String userNN) {

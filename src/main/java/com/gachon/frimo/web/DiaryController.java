@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(path = "/app/diary/")
+@RequestMapping(path = "/app/diary")
 public class DiaryController {
 
     @Autowired
