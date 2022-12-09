@@ -75,12 +75,12 @@ public class DiaryInterestTagService {
         map.put(3, hurts);
         map.put(4, embarrassed);
         map.put(5, happiness );
-        int mainSent =Collections.max(map.keySet());
+        Integer mainSent = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
 
         if(mainSent != 7){
             diary.setMainSent(mainSent);
         }
-        System.out.println(diary.getAuthor());
+       
         return diaryRepository.save(diary);
 
     }
