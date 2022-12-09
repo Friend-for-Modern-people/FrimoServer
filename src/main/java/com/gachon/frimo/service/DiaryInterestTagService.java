@@ -80,7 +80,7 @@ public class DiaryInterestTagService {
         if(mainSent != 7){
             diary.setMainSent(mainSent);
         }
-
+        System.out.println(diary.getAuthor());
         return diaryRepository.save(diary);
 
     }

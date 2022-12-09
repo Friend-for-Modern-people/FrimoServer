@@ -44,8 +44,8 @@ public class SentimentTag extends BaseTimeEntity implements Serializable{
     @Column(name ="sent_small_id", length=10)
     private String sentSmallId;
 
-    @OneToMany(fetch = FetchType.LAZY , mappedBy="sentimentTag")
-    private List<DiaryInterestTag> tags;
+    // @OneToMany(fetch = FetchType.LAZY , mappedBy="sentimentTag")
+    // private List<DiaryInterestTag> tags;
 
     @Builder
     public SentimentTag(int sentLargeId, String sentSmallId){

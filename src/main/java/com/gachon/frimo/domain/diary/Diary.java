@@ -61,11 +61,11 @@ public class Diary extends BaseTimeEntity implements Serializable {
     @JoinColumn(name = "author")
     private User author; // userPk
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<DiaryInterestTag> tags;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    // private List<DiaryInterestTag> tags;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<CommentAI> comments;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    // private List<CommentAI> comments;
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, String imagePath, User author, LocalDateTime dateCreated,

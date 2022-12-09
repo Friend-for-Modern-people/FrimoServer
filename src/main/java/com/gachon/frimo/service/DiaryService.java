@@ -88,8 +88,9 @@ public class DiaryService {
         int mainSent = 7; // initial value
         String imagePath = "";
         // TODO : tag에서 mainSent 계산하는 함수 필요
-
+        System.out.print("userid : "+ userPk);
         User user = userRepository.findByUserPk(userPk);
+        // System.out.print("userid : "+user.getUserId());
         Diary newDiary = Diary.builder()
                 .diaryContent(diaryContent)
                 .diaryTitle(diaryTitle)
