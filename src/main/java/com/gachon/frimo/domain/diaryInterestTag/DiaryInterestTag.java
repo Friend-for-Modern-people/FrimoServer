@@ -31,11 +31,11 @@ public class DiaryInterestTag extends BaseTimeEntity implements Serializable {
     @Column(name = "tag_id")
     private Long tagId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "diary")
     private Diary diary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "sentiment_tag")
     private SentimentTag sentimentTag;
 

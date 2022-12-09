@@ -37,19 +37,19 @@ public class DiaryService {
     }
 
     @Transactional
-    public List<DiaryDto.GetDiaryResponseDto> getDiariesByMonth(Long userPk, int month) {
+    public List<DiaryDto.GetDiaryResponseDto> getDiariesByYear(Long userPk, int year) {
         User user = userRepository.findByUserPk(userPk);
         List<Diary> diaries = diaryRepository.findAllByAuthor(user);
 
         return diaries.stream()
-                .filter(diary -> (diary.getDateCreatedMonth() == month))
+                .filter(diary -> (diary.getDateCreatedYear() == year))
                 .map(DiaryDto::toGetDiaryResponseDto)
                 .collect(Collectors.toList());
 
     }
 
     @Transactional
-    public List<DiaryDto.GetDiaryResponseDto> getDiariesByYear(Long userPk, int year, int month) {
+    public List<DiaryDto.GetDiaryResponseDto> getDiariesByMonth(Long userPk, int year, int month) {
         User user = userRepository.findByUserPk(userPk);
         List<Diary> diaries = diaryRepository.findAllByAuthor(user);
 

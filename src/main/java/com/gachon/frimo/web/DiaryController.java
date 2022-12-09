@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping(path = "/app/diary/")
+@RequestMapping(path = "/app/diary")
 public class DiaryController {
 
     @Autowired
@@ -46,21 +46,21 @@ public class DiaryController {
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
     /*
-     * 월별 일기를 가져오는 API
+     * 년도별 일기를 가져오는 API
      * 
      * @param PathVariable Long userPk , PathVariable int month
      * 
      * @return List<DiaryDto.GetDiaryResponseDto>
      * 
      */
-    @GetMapping(value="/{userPk}/{month}")
+    @GetMapping(value="/{userPk}/{year}")
     public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
-    getDiariesbyMonth(@PathVariable(value="userPk") Long userPk, @PathVariable(value="month") int month){
-        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByMonth(userPk, month);
+    getDiariesbyYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year){
+        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByYear(userPk, year);
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
     /*
-     * 년도별 일기를 가져오는 API
+     * 월별 일기를 가져오는 API
      * 
      * @param PathVariable Long userPk , PathVariable int year
      * 
@@ -69,8 +69,8 @@ public class DiaryController {
      */
     @GetMapping(value="/{userPk}/{year}/{month}")
     public ResponseEntity<List<DiaryDto.GetDiaryResponseDto>>
-    getDiariesbyYear(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year, @PathVariable(value="month") int month){
-        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByYear(userPk, year, month);
+    getDiariesbyMonth(@PathVariable(value="userPk") Long userPk, @PathVariable(value="year") int year, @PathVariable(value="month") int month){
+        List<DiaryDto.GetDiaryResponseDto> diaries=diaryService.getDiariesByMonth(userPk, year, month);
         return ResponseEntity.status(HttpStatus.OK).body(diaries);
     }
     /*
