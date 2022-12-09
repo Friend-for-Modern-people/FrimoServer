@@ -57,15 +57,16 @@ public class Diary extends BaseTimeEntity implements Serializable {
     @Column(name = "main_sent") // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
     private int mainSent;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userPk")
+    @JoinColumn(name = "user_pk")
     private User author; // userPk
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<DiaryInterestTag> tags;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    // private List<DiaryInterestTag> tags;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
-    private List<CommentAI> comments;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "diary")
+    // private List<CommentAI> comments;
 
     @Builder
     public Diary(String diaryTitle, String diaryContent, String imagePath, User author, LocalDateTime dateCreated,
