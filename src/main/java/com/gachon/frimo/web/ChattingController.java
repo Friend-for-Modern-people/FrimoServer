@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/app/chatting/")
 public class ChattingController {
 
-    @Scheduled(cron = "5 * * * * *") // 0 0 3 * * *
+    @Scheduled(cron = "* 10 * * * *") // 0 0 3 * * *
     @GetMapping(path = "")
     public ResponseEntity<String> getChat() throws IOException {
         BufferedReader in = null;
