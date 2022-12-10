@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/app/chatting/")
 public class ChattingController {
 
-    @Scheduled(cron = "* 10 * * * *") // 0 0 3 * * *
+    @Scheduled(cron = "* * 1 * * *") // 0 0 3 * * *
     @GetMapping(path = "")
     public ResponseEntity<String> getChat() throws IOException {
         BufferedReader in = null;
@@ -76,7 +77,9 @@ public class ChattingController {
                     e.printStackTrace();
                 }
         }
-
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse( stringBuilder.toString() );
+        System.out.println(obj);
         return ResponseEntity.status(HttpStatus.OK).body(stringBuilder.toString());
 
     }
