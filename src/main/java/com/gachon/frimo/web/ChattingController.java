@@ -12,16 +12,19 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.json.JSONException;
-import org.json.simple.JSONArray;
+
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +36,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+
 
 
 
@@ -47,8 +52,8 @@ public class ChattingController {
         BufferedReader in = null;
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder resultSB = new StringBuilder();
         
-
         Date dDate = new Date();
         dDate = new Date(dDate.getTime() + (1000 * 60 * 60 * 24 * -1));
         SimpleDateFormat dSdf = new SimpleDateFormat("yyyy/MM/dd HH", Locale.KOREA);
@@ -59,20 +64,14 @@ public class ChattingController {
                     "https://frimo-93773-default-rtdb.firebaseio.com/namseunghyeon/chat.json?orderBy=\"time/date\"&equalTo="
                             + 23 + "&print=pretty"); // 호출할 url
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
             con.setRequestMethod("GET");
-
             in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
 
             String line;
 
             while ((line = in.readLine()) != null) { // response를 차례대로 출력
-                //System.out.println(line);
-                result = result.concat(line);
                 stringBuilder.append(line).append('\n');
             }
-
-            // jsonObject = (JSONObject) parser.parse(result);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -85,8 +84,20 @@ public class ChattingController {
         }
         JSONParser parser = new JSONParser();
         JSONObject obj = (JSONObject) parser.parse( stringBuilder.toString() );
-        // Map<String, Object> map = ((Object) obj).toMap();
-        System.out.println(stringBuilder.toString().getClass().getName() );
+
+        Set<Map.Entry<String, JSONObject>> element = obj.entrySet();
+        for (Map.Entry<String, JSONObject> entry : element) {
+            //entry.getKey(), entry.getValue()
+
+            String who = (String) entry.getValue().get("who");
+            String message = (String) entry.getValue().get("message");
+            
+            if(who.equals("Me")){
+                resultSB.append(message).append('\n');
+            }
+
+        }
+        System.out.println(resultSB.toString() );
         return ResponseEntity.status(HttpStatus.OK).body(stringBuilder.toString());
 
     }
