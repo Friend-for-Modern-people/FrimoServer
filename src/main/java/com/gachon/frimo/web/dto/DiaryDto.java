@@ -1,6 +1,7 @@
 package com.gachon.frimo.web.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.gachon.frimo.domain.diary.Diary;
 import com.gachon.frimo.domain.user.User;
@@ -20,13 +21,14 @@ public class DiaryDto {
         private String diaryContent;
         private User user; // userPk
         private LocalDateTime dateCreated;
+        private String dateCreatedinString;
         private int dateCreatedYear;
         private int dateCreatedMonth;
         // 제일 빈도 수 많은 감정을 뽑기 -> 별도의 함수 만들기
         private int mainSent;
 
         @Builder
-        public GetDiaryResponseDto(Long diaryPk, String diaryTitle, String diaryContent, User user, LocalDateTime dateCreated, int dateCreatedYear,int dateCreatedMonth, int mainSent){
+        public GetDiaryResponseDto(Long diaryPk, String diaryTitle, String diaryContent, User user, LocalDateTime dateCreated, int dateCreatedYear,int dateCreatedMonth, int mainSent, String dateCreatedinString){
             this.diaryPk=diaryPk;
             this.diaryTitle = diaryTitle;
             this.diaryContent = diaryContent;
@@ -35,6 +37,7 @@ public class DiaryDto {
             this.dateCreatedMonth= dateCreatedMonth;
             this.dateCreatedYear = dateCreatedYear;
             this.mainSent= mainSent;
+            this.dateCreatedinString= dateCreatedinString;
         }
         
     }
@@ -48,6 +51,7 @@ public class DiaryDto {
         int dateCreatedMonth= diary.getDateCreatedMonth();
         int dateCreatedYear = diary.getDateCreatedYear();
         int mainSent = diary.getMainSent();
+        String dateCreatedinString = dateCreated.format(DateTimeFormatter.ofPattern("yy.MM.dd"));
         
         GetDiaryResponseDto getDiaryResponseDto = GetDiaryResponseDto.builder()
                             .diaryPk(diaryPk)
@@ -58,6 +62,7 @@ public class DiaryDto {
                             .dateCreatedMonth(dateCreatedMonth)
                             .dateCreatedYear(dateCreatedYear)
                             .mainSent(mainSent)
+                            .dateCreatedinString(dateCreatedinString)
                             .build();
         return getDiaryResponseDto;
         

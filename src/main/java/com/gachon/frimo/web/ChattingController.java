@@ -14,9 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +32,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.JsonArray;
+
 
 
 @EnableScheduling
@@ -36,7 +43,7 @@ public class ChattingController {
 
     @Scheduled(cron = "* 10 * * * *") // 0 0 3 * * *
     @GetMapping(path = "")
-    public ResponseEntity<String> getChat() throws IOException {
+    public ResponseEntity<String> getChat() throws IOException, ParseException {
         BufferedReader in = null;
         String result = "";
         StringBuilder stringBuilder = new StringBuilder();
@@ -60,7 +67,7 @@ public class ChattingController {
             String line;
 
             while ((line = in.readLine()) != null) { // response를 차례대로 출력
-                System.out.println(line);
+                //System.out.println(line);
                 result = result.concat(line);
                 stringBuilder.append(line).append('\n');
             }
@@ -76,7 +83,10 @@ public class ChattingController {
                     e.printStackTrace();
                 }
         }
-
+        JSONParser parser = new JSONParser();
+        JSONObject obj = (JSONObject) parser.parse( stringBuilder.toString() );
+        // Map<String, Object> map = ((Object) obj).toMap();
+        System.out.println(stringBuilder.toString().getClass().getName() );
         return ResponseEntity.status(HttpStatus.OK).body(stringBuilder.toString());
 
     }
