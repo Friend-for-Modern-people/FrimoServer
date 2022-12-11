@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import com.gachon.frimo.domain.user.User;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,10 @@ public class DiaryService {
         User user = userRepository.findByUserPk(userPk);
         List<Diary> diaries = diaryRepository.findAllByAuthor(user);
 
-        return diaries.stream().map(DiaryDto::toGetDiaryResponseDto)
+        return diaries.stream()
+                .sorted(Comparator.comparing(Diary::getDateCreated))
+                .map(DiaryDto::toGetDiaryResponseDto)
+
                 .collect(Collectors.toList());
     }
 
@@ -43,6 +47,7 @@ public class DiaryService {
 
         return diaries.stream()
                 .filter(diary -> (diary.getDateCreatedYear() == year))
+                .sorted(Comparator.comparing(Diary::getDateCreated))
                 .map(DiaryDto::toGetDiaryResponseDto)
                 .collect(Collectors.toList());
 
@@ -55,6 +60,7 @@ public class DiaryService {
 
         return diaries.stream()
                 .filter(diary -> (diary.getDateCreatedYear() == year && diary.getDateCreatedMonth() == month))
+                .sorted(Comparator.comparing(Diary::getDateCreated))
                 .map(DiaryDto::toGetDiaryResponseDto)
                 .collect(Collectors.toList());
     }
@@ -88,7 +94,7 @@ public class DiaryService {
         int mainSent = 7; // initial value
         String imagePath = "";
         // TODO : tag에서 mainSent 계산하는 함수 필요
-        System.out.print("userid : "+ userPk);
+        System.out.print("userid : " + userPk);
         User user = userRepository.findByUserPk(userPk);
         // System.out.print("userid : "+user.getUserId());
         Diary newDiary = Diary.builder()

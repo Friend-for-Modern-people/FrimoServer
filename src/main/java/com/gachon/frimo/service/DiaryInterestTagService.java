@@ -90,6 +90,7 @@ public class DiaryInterestTagService {
     public void addTag(DiaryInterestTagDto.AddTagRequestDto tag) {
         Diary diary = diaryRepository.findByDiaryPk(tag.getDiaryPk());
         SentimentTag sentimentTag = sentimentTagRepository.findBySentPk(tag.getSentPK());
+        System.out.println(sentimentTag);
         DiaryInterestTag newTag = DiaryInterestTag.builder()
                 .tagContent(tag.getTagContent())
                 .category(tag.getCategory())
