@@ -90,6 +90,7 @@ public class DiaryInterestTagService {
     public void addTag(DiaryInterestTagDto.AddTagRequestDto tag) {
         Diary diary = diaryRepository.findByDiaryPk(tag.getDiaryPk());
         SentimentTag sentimentTag = sentimentTagRepository.findBySentPk(tag.getSentPK());
+        System.out.println("sentiment : "+sentimentTag.getSentLargeId());
         DiaryInterestTag newTag = DiaryInterestTag.builder()
                 .tagContent(tag.getTagContent())
                 .category(tag.getCategory())
@@ -99,9 +100,21 @@ public class DiaryInterestTagService {
         diaryInterestTagRepository.save(newTag);
     }
 
+ // 일기에 테그 중 4개만 가져오기
+ @Transactional
+ public List<DiaryInterestTagDto.GetTagResponseDto> getTags (Long diaryPk){
+     Diary diary = diaryRepository.findByDiaryPk(diaryPk);
+     List<DiaryInterestTag> tags = diaryInterestTagRepository.findAllByDiary(diary);
+
+     return  tags.stream()
+     .map(DiaryInterestTagDto::toGetTagResponseDto)
+             .collect(Collectors.toList());
+
+ }
+
     // 일기에 테그 중 4개만 가져오기
     @Transactional
-    public List<DiaryInterestTagDto.GetTagResponseDto> getTags (Long diaryPk){
+    public List<DiaryInterestTagDto.GetTagResponseDto> getTagsOnly4 (Long diaryPk){
         Diary diary = diaryRepository.findByDiaryPk(diaryPk);
         List<DiaryInterestTag> tags = diaryInterestTagRepository.findAllByDiary(diary);
 
