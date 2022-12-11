@@ -19,17 +19,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-<<<<<<< HEAD
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-=======
 
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONValue;
->>>>>>> e279fc063a4414d2126b5b3b8fd5b846774c19d3
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,10 +35,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
 
 
 
@@ -88,10 +80,6 @@ public class ChattingController {
                 }
         }
         JSONParser parser = new JSONParser();
-<<<<<<< HEAD
-        Object obj = parser.parse( stringBuilder.toString() );
-        System.out.println(obj);
-=======
         JSONObject obj = (JSONObject) parser.parse( stringBuilder.toString() );
 
         Set<Map.Entry<String, JSONObject>> element = obj.entrySet();
@@ -107,7 +95,7 @@ public class ChattingController {
 
         }
         System.out.println(resultSB.toString() );
->>>>>>> e279fc063a4414d2126b5b3b8fd5b846774c19d3
+
         return ResponseEntity.status(HttpStatus.OK).body(stringBuilder.toString());
 
     }
