@@ -32,6 +32,20 @@ public class DiaryController {
     @Autowired
     DiaryInterestTagService diaryInterestTagService;
     /*
+     * 하나의 일기 가져오는 API
+     * 
+     * @param PathVariable Long diaryPk
+     * 
+     * @return DiaryDto.GetDiaryResponseDto
+     * 
+     */
+    @GetMapping(value="/{diaryPk}/only1")
+    public ResponseEntity<DiaryDto.GetDiaryResponseDto>
+    getDiaryEntity(@PathVariable(value="diaryPk") Long diaryPk){
+        DiaryDto.GetDiaryResponseDto diary=diaryService.getOneDiary(diaryPk);
+        return ResponseEntity.status(HttpStatus.OK).body(diary);
+    }
+    /*
      * 최신순의 일기를 가져오는 API
      * 
      * @param PathVariable Long userPk

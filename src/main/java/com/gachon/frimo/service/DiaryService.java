@@ -61,7 +61,7 @@ public class DiaryService {
 
     // 일기 하나
     @Transactional
-    public DiaryDto.GetDiaryResponseDto getOneDiary(Long userPk, Long diaryPk) {
+    public DiaryDto.GetDiaryResponseDto getOneDiary(Long diaryPk) {
         Diary diary = diaryRepository.findByDiaryPk(diaryPk);
         return DiaryDto.toGetDiaryResponseDto(diary);
     }

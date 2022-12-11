@@ -10,16 +10,20 @@ import lombok.AccessLevel;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChattingDto {
 
-    private String who;
+    //private String who;
     private String message;
-    private Date time;
+    //private Date time;
 
     @Builder
-    public ChattingDto(String who, String message, Date time) {
-        this.who=who;
+    public ChattingDto( String message) {
         this.message = message;
-        this.time = time;
     }
+    // @Builder
+    // public ChattingDto(String who, String message, Date time) {
+    //     this.who=who;
+    //     this.message = message;
+    //     this.time = time;
+    // }
 
 
 }
