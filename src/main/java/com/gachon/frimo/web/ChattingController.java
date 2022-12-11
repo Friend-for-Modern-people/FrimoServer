@@ -25,6 +25,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONValue;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,10 +37,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-
-
 
 
 @EnableScheduling
@@ -47,7 +44,7 @@ import com.google.gson.JsonElement;
 @RequestMapping(path = "/app/chatting/")
 public class ChattingController {
 
-    @Scheduled(cron = "* 10 * * * *") // 0 0 3 * * *
+    @Scheduled(cron = "* * 1 * * *") // 0 0 3 * * *
     @GetMapping(path = "")
     public ResponseEntity<String> getChat() throws IOException, ParseException {
         BufferedReader in = null;
@@ -99,6 +96,7 @@ public class ChattingController {
 
         }
         System.out.println(resultSB.toString() );
+
         return ResponseEntity.status(HttpStatus.OK).body(stringBuilder.toString());
 
     }

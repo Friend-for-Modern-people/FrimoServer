@@ -52,6 +52,8 @@ dependencies {
 	implementation group: 'com.github.alperkurtul', name: 'spring-boot-starter-firebase-realtime-database', version: '1.0.5.RELEASE'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	
+	implementation files("json-simple-1.1.1.jar")
+
 }
 
 tasks.named('test') {
