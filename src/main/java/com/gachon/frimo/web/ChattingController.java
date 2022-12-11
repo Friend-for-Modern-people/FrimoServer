@@ -34,6 +34,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -102,4 +103,12 @@ public class ChattingController {
 
     }
 
+    @GetMapping(path="/{userPk}/{chatContent}")
+    public ResponseEntity<String> sendChatFromModel(@PathVariable(value = "userPk") Long userPk, @PathVariable(value = "chatContent") String chatContent){
+        //유저의 채팅 받아서 모델돌리고
+        
+        //모델의 결과값 반환
+        String response="";
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
