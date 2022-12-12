@@ -44,7 +44,7 @@ import com.gachon.frimo.web.dto.ChattingDto;
 
 @EnableScheduling
 @Controller
-@RequestMapping(path = "/app/chatting/")
+@RequestMapping(path = "/app/chatting")
 public class ChattingController {
 
     /*
