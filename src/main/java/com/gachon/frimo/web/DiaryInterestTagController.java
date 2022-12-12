@@ -17,7 +17,7 @@ import com.gachon.frimo.service.DiaryInterestTagService;
 import com.gachon.frimo.web.dto.DiaryInterestTagDto;
 
 @Controller
-@RequestMapping(path = "/app/tag/")
+@RequestMapping(path = "/app/tag")
 public class DiaryInterestTagController {
     @Autowired
     DiaryInterestTagService diaryInterestTagService;
