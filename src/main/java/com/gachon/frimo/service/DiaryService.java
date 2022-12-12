@@ -34,7 +34,7 @@ public class DiaryService {
         List<Diary> diaries = diaryRepository.findAllByAuthor(user);
 
         return diaries.stream()
-                .sorted(Comparator.comparing(Diary::getDateCreated))
+                .sorted(Comparator.comparing(Diary::getDateCreated).reversed())
                 .map(DiaryDto::toGetDiaryResponseDto)
 
                 .collect(Collectors.toList());
@@ -47,7 +47,7 @@ public class DiaryService {
 
         return diaries.stream()
                 .filter(diary -> (diary.getDateCreatedYear() == year))
-                .sorted(Comparator.comparing(Diary::getDateCreated))
+                .sorted(Comparator.comparing(Diary::getDateCreated).reversed())
                 .map(DiaryDto::toGetDiaryResponseDto)
                 .collect(Collectors.toList());
 
@@ -60,7 +60,7 @@ public class DiaryService {
 
         return diaries.stream()
                 .filter(diary -> (diary.getDateCreatedYear() == year && diary.getDateCreatedMonth() == month))
-                .sorted(Comparator.comparing(Diary::getDateCreated))
+                .sorted(Comparator.comparing(Diary::getDateCreated).reversed())
                 .map(DiaryDto::toGetDiaryResponseDto)
                 .collect(Collectors.toList());
     }
