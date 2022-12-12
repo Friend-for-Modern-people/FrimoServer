@@ -16,7 +16,7 @@ public class DiaryInterestTagDto {
 
         private Long diaryPk;
         private String tagContent;
-        private Long sentPK;
+        private Long sentPK; //10,19,28,37,46
         private String category;
 
         @Builder
@@ -33,12 +33,17 @@ public class DiaryInterestTagDto {
     public static class GetTagResponseDto {
         private String tagContent;
         private int sentLargeId; // 0~5
+        private Long diaryPk;
+        private Long sentPk;
+        private String category;
 
         @Builder
-        public GetTagResponseDto(String tagContent, int sentLargeId) {
-
+        public GetTagResponseDto(String tagContent, int sentLargeId, Long diaryPk, Long sentPk, String category) {
             this.tagContent = tagContent;
             this.sentLargeId = sentLargeId;
+            this.diaryPk =diaryPk;
+            this.sentPk = sentPk;
+            this.category = category;
         }
     }
 
@@ -48,6 +53,9 @@ public class DiaryInterestTagDto {
         GetTagResponseDto getTagResponseDto = GetTagResponseDto.builder()
                 .tagContent(diaryInterestTag.getTagContent())
                 .sentLargeId(diaryInterestTag.getSentimentTag().getSentLargeId())
+                .diaryPk(diaryInterestTag.getDiary().getDiaryPk())
+                .category(diaryInterestTag.getCategory())
+                .sentPk(diaryInterestTag.getSentimentTag().getSentPk())
                 .build();
 
         return getTagResponseDto;
