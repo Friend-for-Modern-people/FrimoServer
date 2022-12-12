@@ -34,6 +34,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -119,7 +120,7 @@ public class ChattingController {
      * 
      * @return String message
      */
-    @GetMapping(path="/{userPk}")
+    @PostMapping(path="/{userPk}")
     public ResponseEntity<String> sendChatFromModel(@PathVariable(value = "userPk") Long userPk, @RequestBody ChattingDto chattingDto){
         //유저의 채팅 받아서 모델돌리고
         String chatFromUser = chattingDto.getMessage();
