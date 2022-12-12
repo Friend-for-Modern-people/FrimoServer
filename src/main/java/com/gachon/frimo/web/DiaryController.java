@@ -108,7 +108,7 @@ public class DiaryController {
      * 
      * @return  201 CREATED , saved
      */
-    @PostMapping(value="/{userPk}")
+    @PostMapping(value="")
     public ResponseEntity<String> addDiary(@RequestBody  DiaryDto.AddDiaryRequestDto addDiaryRequestDto) {
         diaryService.addDiary(addDiaryRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("saved");

@@ -34,8 +34,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.gachon.frimo.web.dto.ChattingDto;
 
 
 
@@ -44,6 +47,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(path = "/app/chatting/")
 public class ChattingController {
 
+    /*
+     * 리얼타임에서 일정시간마다 채팅 긁어오는 API
+     * 
+     * @param 
+     * 
+     * @return String chattingContent
+     */
     @Scheduled(cron = "* * 1 * * *") // 0 0 3 * * *
     @GetMapping(path = "")
     public ResponseEntity<String> getChat() throws IOException, ParseException {
@@ -101,12 +111,20 @@ public class ChattingController {
 
     }
 
-    @GetMapping(path="/{userPk}/{chatContent}")
-    public ResponseEntity<String> sendChatFromModel(@PathVariable(value = "userPk") Long userPk, @PathVariable(value = "chatContent") String chatContent){
+
+    /*
+     * 모델과 채팅하는 API
+     * 
+     * @param RequestBody chattingDto, @Path Long userPk
+     * 
+     * @return String message
+     */
+    @GetMapping(path="/{userPk}")
+    public ResponseEntity<String> sendChatFromModel(@PathVariable(value = "userPk") Long userPk, @RequestBody ChattingDto chattingDto){
         //유저의 채팅 받아서 모델돌리고
-        
+        String chatFromUser = chattingDto.getMessage();
         //모델의 결과값 반환
-        String response="";
+        String response="ok";
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

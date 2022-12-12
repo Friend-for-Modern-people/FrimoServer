@@ -37,10 +37,8 @@ public class DiaryInterestTagController {
      * 
      * @return 201 CREATED , saved
      */
-    @PostMapping(value = "/{userPk}/{diaryPk}")
-    public ResponseEntity<String> addTag(@PathVariable(value = "userPk") Long userPk,
-            @PathVariable(value = "diaryPk") Long diaryPk,
-            @RequestBody DiaryInterestTagDto.AddTagRequestDto addTagRequestDto) {
+    @PostMapping(value = "")
+    public ResponseEntity<String> addTag(@RequestBody DiaryInterestTagDto.AddTagRequestDto addTagRequestDto) {
         diaryInterestTagService.addTag(addTagRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("saved");
     }
@@ -52,9 +50,8 @@ public class DiaryInterestTagController {
      * 
      * @return List<DiaryInterestTagDto.GetTagResponseDto>
      */
-    @GetMapping(path = "/{userPk}/{diaryPk}")
-    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> getTags(
-            @PathVariable(value = "userPk") Long userPk, @PathVariable(value = "diaryPk") Long diaryPk) {
+    @GetMapping(path = "/{diaryPk}")
+    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> getTags(@PathVariable(value = "diaryPk") Long diaryPk) {
         List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTags(diaryPk);
 
         return ResponseEntity.status(HttpStatus.OK).body(gettags);
@@ -67,9 +64,8 @@ public class DiaryInterestTagController {
      * 
      * @return List<DiaryInterestTagDto.GetTagResponseDto>
      */
-    @GetMapping(path = "/{userPk}/{diaryPk}/only4")
-    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> get4Tags(
-            @PathVariable(value = "userPk") Long userPk, @PathVariable(value = "diaryPk") Long diaryPk) {
+    @GetMapping(path = "/{diaryPk}/only4")
+    public ResponseEntity<List<DiaryInterestTagDto.GetTagResponseDto>> get4Tags(@PathVariable(value = "diaryPk") Long diaryPk) {
         List<DiaryInterestTagDto.GetTagResponseDto> gettags = diaryInterestTagService.getTagsOnly4(diaryPk);
 
         return ResponseEntity.status(HttpStatus.OK).body(gettags);
